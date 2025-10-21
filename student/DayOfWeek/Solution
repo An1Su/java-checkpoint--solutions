@@ -1,0 +1,23 @@
+package DayOfWeek;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+public class DayOfWeekFinder {
+    public String findNextDayOfWeek(String startDate, String dayOfWeek){
+        try{
+        LocalDate start = LocalDate.parse(startDate); //expects specific format, yyyy-mm-dd. parses input into a LocalDate object.
+        DayOfWeek targetDay = DayOfWeek.valueOf(dayOfWeek.toUpperCase()); // converting string into an enum, that simplifies the code.
+
+        DayOfWeek currentDay = start.getDayOfWeek();
+        int daysToAdd = (targetDay.getValue() - currentDay.getValue() +7)%7;
+        daysToAdd = daysToAdd == 0? 7 : daysToAdd;
+
+        LocalDate result = start.plusDays(daysToAdd);
+        return result.toString();
+
+    } catch(DateTimeParseException e){
+        return "Error";}
+
+    }
+}
