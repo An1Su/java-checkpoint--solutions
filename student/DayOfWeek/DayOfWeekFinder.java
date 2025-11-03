@@ -16,7 +16,7 @@ public class DayOfWeekFinder {
            daysToAdd = daysToAdd == 0? 7: daysToAdd;
            LocalDate targetDate =  date.plusDays(daysToAdd);
            return targetDate.toString();
-       } catch (DateTimeParseException e){
+       } catch (Exception e){
            return "Error";
        }
     }

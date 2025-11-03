@@ -13,5 +13,6 @@ public class InsertionSort extends Sorter {
             }
             arr[z+1] = key;
         }
+        setArray(arr);
     }
 }

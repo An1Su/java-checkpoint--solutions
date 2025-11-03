@@ -2,41 +2,36 @@ package HTMLValidator;
 
 import java.util.*;
 
-public class HTMLValidator {
+public class HTMLValidator{
     public boolean validateHTML(String html) {
-        Stack<String> stack = new Stack<>();
-        int i = 0;
+        String[] tagList = new String[html.length()];
+        int tagIndex = 0;
 
-        while (i < html.length()) {
+        for (int i = 0; i < html.length(); i++) {
             if (html.charAt(i) == '<') {
-                int j = html.indexOf('>', i);
-                if (j == -1) return false;
+                int start = i;
+                int end = html.indexOf('>', start);
+                if (end == -1) return false;
 
-                String tag = html.substring(i + 1, j).trim();
+                String tag = html.substring(start + 1, end).trim();
+                if (tag.length() == 0) return false;
 
-                if (tag.endsWith("/")) {
-                    i = j + 1;
-                    continue; // самозакрывающийся тег
+                if (tag.equals("br/")) {
+                    i = end;
+                    continue;
                 }
 
-                boolean isClosing = tag.startsWith("/");
-                String tagName = isClosing ? tag.substring(1) : tag;
-
-                if (isClosing) {
-                    if (stack.isEmpty() || !stack.peek().equals(tagName)) {
-                        return false;
-                    }
-                    stack.pop();
+                if (tag.charAt(0) == '/') {
+                    String tagName = tag.substring(1);
+                    if (tagIndex == 0 || !tagList[tagIndex - 1].equals(tagName)) return false;
+                    tagIndex--;
                 } else {
-                    stack.push(tagName);
+                    tagList[tagIndex] = tag;
+                    tagIndex++;
                 }
-
-                i = j + 1;
-            } else {
-                i++;
+                i = end;
             }
         }
-
-        return stack.isEmpty();
+        return tagIndex == 0;
     }
 }

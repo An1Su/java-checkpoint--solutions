@@ -15,5 +15,6 @@ public class BubbleSort extends Sorter {
                 }
             }
         }
+        setArray(arr);
     }
 }

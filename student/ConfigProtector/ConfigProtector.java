@@ -1,25 +1,24 @@
 package ConfigProtector;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ConfigProtector {
     public String hideSensitiveData(String configFile, List<String> sensitiveKeys) {
-        for (String key : sensitiveKeys) {
-            Pattern pattern = Pattern.compile(key + "=([^\\n]*)");
-            Matcher matcher = pattern.matcher(configFile);
+        if (configFile.isEmpty()){return "";}
+        StringBuilder result = new StringBuilder();
+        String[] lines = configFile.split("\n");
 
-            StringBuilder result = new StringBuilder();
-            while (matcher.find()) {
-                String value = matcher.group(1);
-                String masked = "*".repeat(value.length());
-                matcher.appendReplacement(result, key + "=" + masked);
+        for (String line : lines) {
+            String[] parts = line.split("=", 2);
+            String key = parts[0];
+            String value = parts[1];
 
+            if (sensitiveKeys.contains(key)) {
+                value = "*".repeat(value.length());
             }
-            matcher.appendTail(result);
-            configFile = result.toString();
+
+            result.append(key).append("=").append(value).append("\n");
         }
-        return configFile;
+        return result.toString();
     }
 }
