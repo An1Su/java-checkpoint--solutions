@@ -12,7 +12,7 @@ public class TodoList {
     }
 
     public void addTask(String description){
-        if (count >= capacity|| description.length()>30) return;
+        if (count >= capacity || description == null || description.length() > 30) return;
         tasks[count++] = new Task(description);
     }
 
@@ -22,7 +22,7 @@ public class TodoList {
     }
 
     public void setDescription(int index, String newDescription){
-        if (index < 0 || index >= count || newDescription.length()>30) return;
+        if (index < 0 || index >= count || newDescription == null || newDescription.length() > 30) return;
         tasks[index].setDescription(newDescription);
     }
 

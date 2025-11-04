@@ -8,6 +8,9 @@ public class RegexDirector {
     }
 
     public Regex construct() {
+        if (builder == null) {
+            return null;
+        }
         builder.buildLiteral("Hello");
         builder.buildWhitespace();
         builder.buildWordCharacter();

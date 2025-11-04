@@ -71,11 +71,17 @@ public class DoubleLinkedList implements LinkedList {
     }
 
     private Node next(Node node) {
+        if (node == null) {
+            return null;
+        }
         System.out.println("Go to next node");
         return node.next;
     }
 
     private Node prev(Node node) {
+        if (node == null) {
+            return null;
+        }
         System.out.println("Go to previous node");
         return node.prev;
     }

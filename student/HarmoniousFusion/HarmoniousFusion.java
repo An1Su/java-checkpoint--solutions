@@ -2,6 +2,9 @@ package HarmoniousFusion;
 
 public class HarmoniousFusion {
     public int[] merge(int[] arr1, int[] arr2) {
+        if (arr1 == null) arr1 = new int[0];
+        if (arr2 == null) arr2 = new int[0];
+        
         int[] result = new int[arr1.length + arr2.length];
         int i = 0, z = 0, r = 0;
 

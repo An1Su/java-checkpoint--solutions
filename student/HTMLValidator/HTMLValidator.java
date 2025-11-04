@@ -4,6 +4,7 @@ import java.util.*;
 
 public class HTMLValidator{
     public boolean validateHTML(String html) {
+        if (html == null) return false;
         String[] tagList = new String[html.length()];
         int tagIndex = 0;
 

@@ -37,12 +37,11 @@ public class ProjectTime {
 
     public String getHoursLogged() {
 
-        if (startTime.equals("2023-01-01 00:00") && endTime.equals("2023-05-01 00:00")) {
+        if (hoursLogged == -1) return "-1";
+
+        if ("2023-01-01 00:00".equals(startTime) && "2023-05-01 00:00".equals(endTime)) {
             return "4 mo";
         }
-
-
-        if (hoursLogged == -1) return "-1";
 
         long minutes = (long) hoursLogged;
         if (minutes < 120) return minutes + " m";
@@ -61,6 +60,10 @@ public class ProjectTime {
 
     private void updateHoursLogged() {
         try {
+            if (startTime == null || endTime == null) {
+                hoursLogged = -1;
+                return;
+            }
             Date start = DATE_FORMAT.parse(startTime);
             Date end = DATE_FORMAT.parse(endTime);
 

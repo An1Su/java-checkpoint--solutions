@@ -4,6 +4,9 @@ import java.util.HashSet;
 
 public class DistinctSubstringLength {
     public int maxLength(String s) {
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
         int max = 0;
         int start = 0;
         HashSet<Character> seen = new HashSet<>();

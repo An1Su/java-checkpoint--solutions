@@ -2,6 +2,9 @@ package AlmostPalindrome;
 
 public class AlmostPalindrome {
     public static boolean isAlmostPalindrome(String s) {
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
         s = s.toLowerCase();
         int left = 0;
         int right = s.length() - 1;

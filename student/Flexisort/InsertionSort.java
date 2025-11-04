@@ -4,6 +4,7 @@ public class InsertionSort extends Sorter {
     @Override
     public void sort() {
         int[] arr = getArray();
+        if (arr == null || arr.length == 0) return;
         for (int i = 1; i < arr.length; i++){
             int key = arr[i];
             int z = i -1;

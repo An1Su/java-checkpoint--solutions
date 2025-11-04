@@ -4,6 +4,9 @@ import java.util.*;
 
 public class TopFrequents {
     public List<Integer> findTopKFrequent(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return new ArrayList<>();
+        }
         Map<Integer, Integer> freq = new HashMap<>();
         Map<Integer, Integer> firstIndex = new HashMap<>();
 

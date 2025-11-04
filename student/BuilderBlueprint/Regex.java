@@ -7,8 +7,12 @@ public class Regex {
 
     public Regex(List<String> component) {
         pattern = new StringBuilder();
-        for (String s : component) {
-            pattern.append(s);
+        if (component != null) {
+            for (String s : component) {
+                if (s != null && !s.isEmpty()) {
+                    pattern.append(s);
+                }
+            }
         }
     }
 

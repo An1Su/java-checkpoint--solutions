@@ -8,7 +8,9 @@ public class ConcreteRegexBuilder implements RegexBuilder {
 
     @Override
     public void buildLiteral(String literal) {
-        component.add(literal);
+        if (literal != null && !literal.isEmpty()) {
+            component.add(literal);
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ public class BubbleSort extends Sorter {
     @Override
     public void sort() {
         int[] arr = getArray();
+        if (arr == null || arr.length == 0) return;
         for (int i = 0; i < arr.length-1;i ++){
             for (int z= 0 ; z < arr.length - i -1; z++){
                 if (arr[z] > arr[z+1]){

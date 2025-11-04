@@ -70,6 +70,9 @@ public class SingleLinkedList implements LinkedList {
     }
 
     private Node next(Node node) {
+        if (node == null) {
+            return null;
+        }
         System.out.print("Go to next node\n");
         return node.next;
     }
